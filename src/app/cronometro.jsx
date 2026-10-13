@@ -17,7 +17,7 @@ export default function CronometroScreen() {
       ? 'En pausa'
       : 'Listo para iniciar';
 
-  const tiempoFormateado = formatearDuracion(tiempo);
+  const tiempoFormateado = formatearDuracion(tiempo, true);
   const ancho = anchoContenido || Math.min(520, Math.max(0, width - 40));
   const compacto = ancho < 330 || height < 640;
   const controlesEnColumna = ancho < 320 || fontScale > 1.3;
@@ -28,16 +28,16 @@ export default function CronometroScreen() {
   );
 
   const colorEstado = enEjecucion
-    ? 'text-emerald-300'
+    ? 'text-emerald-700'
     : tiempo > 0
-      ? 'text-amber-300'
-      : 'text-slate-300';
+      ? 'text-amber-800'
+      : 'text-slate-700';
 
   const colorPunto = enEjecucion
-    ? 'bg-emerald-400'
+    ? 'bg-emerald-600'
     : tiempo > 0
-      ? 'bg-amber-400'
-      : 'bg-slate-400';
+      ? 'bg-amber-600'
+      : 'bg-slate-500';
 
   const claseControl = [
     'min-h-[56px] rounded-2xl',
@@ -60,22 +60,22 @@ export default function CronometroScreen() {
       >
         <View
           className={[
-            'rounded-[28px] border border-slate-800 bg-slate-950',
+            'rounded-[28px] border border-violet-200 bg-white',
             compacto ? 'p-5' : 'p-7',
           ].join(' ')}
         >
           <View className="flex-row items-center">
-            <View className="h-11 w-11 items-center justify-center rounded-2xl bg-violet-500/20">
-              <Timer size={24} color="#c4b5fd" strokeWidth={1.8} />
+            <View className="h-11 w-11 items-center justify-center rounded-2xl bg-violet-100">
+              <Timer size={24} color="#7c3aed" strokeWidth={1.8} />
             </View>
-            <Text className="ml-3 flex-1 text-base font-semibold text-slate-200">
+            <Text className="ml-3 flex-1 text-base font-semibold text-slate-700">
               Tiempo transcurrido
             </Text>
           </View>
 
           <View className={compacto ? 'mt-5' : 'mt-8'}>
             <Text
-              className="w-full text-center font-mono font-bold text-white"
+              className="w-full text-center font-mono font-bold text-violet-700"
               style={{ fontSize: tamanoTiempo }}
               numberOfLines={1}
               adjustsFontSizeToFit
@@ -85,14 +85,12 @@ export default function CronometroScreen() {
               {tiempoFormateado}
             </Text>
 
-            <Text className="mt-2 text-center text-xs font-medium tracking-widest text-slate-400">
-              {tiempoFormateado.length > 5
-                ? 'HORAS : MINUTOS : SEGUNDOS'
-                : 'MINUTOS : SEGUNDOS'}
+            <Text className="mt-2 text-center text-xs font-medium tracking-widest text-slate-600">
+              HORAS : MINUTOS : SEGUNDOS
             </Text>
           </View>
 
-          <View className="mt-6 max-w-full self-center flex-row items-center rounded-full bg-white/10 px-4 py-2">
+          <View className="mt-6 max-w-full self-center flex-row items-center rounded-full bg-slate-100 px-4 py-2">
             <View
               className={['h-2 w-2 shrink-0 rounded-full', colorPunto].join(' ')}
             />

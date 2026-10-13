@@ -39,8 +39,8 @@ export function obtenerSaludo(fecha = new Date()) {
   return 'Buenas noches';
 }
 
-// Recibe milisegundos y muestra mm:ss o HH:mm:ss.
-export function formatearDuracion(milisegundos = 0) {
+// Recibe milisegundos. incluirHoras permite mostrar siempre HH:mm:ss.
+export function formatearDuracion(milisegundos = 0, incluirHoras = false) {
   const totalSegundos = Number.isFinite(milisegundos)
     ? Math.max(0, Math.floor(milisegundos / 1000))
     : 0;
@@ -49,7 +49,7 @@ export function formatearDuracion(milisegundos = 0) {
   const minutos = Math.floor((totalSegundos % 3600) / 60);
   const segundos = totalSegundos % 60;
 
-  if (horas > 0) {
+  if (incluirHoras || horas > 0) {
     return `${dosDigitos(horas)}:${dosDigitos(minutos)}:${dosDigitos(segundos)}`;
   }
 
