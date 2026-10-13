@@ -14,8 +14,33 @@ export default function ScreenContainer({
   children,
   showBack = true,
   scroll = true,
+  scrollHeader = false,
   contentClassName = '',
 }) {
+  const encabezado = (
+    <View className="px-5 pb-5 pt-2">
+      {showBack && (
+        <AppButton
+          title="Volver al menú"
+          icon={ArrowLeft}
+          variant="secondary"
+          onPress={() => router.navigate('/')}
+          className="mb-5 self-start"
+        />
+      )}
+
+      <Text className="text-3xl font-bold text-slate-900">
+        {title}
+      </Text>
+
+      {subtitle && (
+        <Text className="mt-2 text-base leading-6 text-slate-600">
+          {subtitle}
+        </Text>
+      )}
+    </View>
+  );
+
   const contenido = (
     <View
       className={[
@@ -32,27 +57,7 @@ export default function ScreenContainer({
     <SafeAreaView className="flex-1 bg-slate-50">
       <StatusBar style="dark" />
 
-      <View className="px-5 pb-5 pt-2">
-        {showBack && (
-          <AppButton
-            title="Volver al menú"
-            icon={ArrowLeft}
-            variant="secondary"
-            onPress={() => router.navigate('/')}
-            className="mb-5 self-start"
-          />
-        )}
-
-        <Text className="text-3xl font-bold text-slate-900">
-          {title}
-        </Text>
-
-        {subtitle && (
-          <Text className="mt-2 text-base leading-6 text-slate-600">
-            {subtitle}
-          </Text>
-        )}
-      </View>
+      {(!scroll || !scrollHeader) && encabezado}
 
       {scroll ? (
         <ScrollView
@@ -61,6 +66,7 @@ export default function ScreenContainer({
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
         >
+          {scrollHeader && encabezado}
           {contenido}
         </ScrollView>
       ) : (

@@ -1,4 +1,3 @@
-import { Text, View } from 'react-native';
 import { router } from 'expo-router';
 import { AlarmClock, Clock, Timer } from 'lucide-react-native';
 import ScreenContainer from '../components/organisms/ScreenContainer';
@@ -38,10 +37,6 @@ export default function MenuScreen() {
       subtitle="Selecciona un ejercicio para comenzar."
       showBack={false}
     >
-      <View className="mb-6 self-start rounded-full bg-blue-100 px-4 py-2">
-        <Text className="text-xs font-bold text-blue-700">EXAMEN PARCIAL</Text>
-      </View>
-
       {EJERCICIOS.map((ejercicio) => (
         <ExerciseCard
           key={ejercicio.route}
